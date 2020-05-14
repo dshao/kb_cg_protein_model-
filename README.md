@@ -38,7 +38,7 @@ Main outputs:
 
 NOTE: other other files are created during the CG procedure that are not necessary for running Molecular Dynamics
 
-###To convert your resulting .top and .prm into a single .xml file for OpenMM simulations use:
+### To convert your resulting .top and .prm into a single .xml file for OpenMM simulations use:
 
 `python ../../../parse_cg_prm.py -p [path-to-parameter-file] -t [path-to-topology-file]`
 
