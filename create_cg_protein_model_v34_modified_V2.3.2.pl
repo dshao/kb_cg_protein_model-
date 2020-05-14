@@ -800,6 +800,7 @@ for($np=0;$np<=$#pdb;$np++)
         }
       if(int($xtest)!=$xtest and int($ytest)!=$ytest and int($ztest)!=$ztest) # Good, they're all floating points
         {
+        print "passes float test";
         $atomnam[$hat] = $dat[2];
         @chars=split(//,$dat[2]);
         $atom[$hat] = $chars[0];
@@ -821,6 +822,7 @@ for($np=0;$np<=$#pdb;$np++)
         }
       else # Assume xyz's are shifted by one index
         {
+        print "assuming xyz's are shifted";
         $atomnam[$hat] = $dat[2];
         @chars=split(//,$dat[2]);
         $atom[$hat] = $chars[0];

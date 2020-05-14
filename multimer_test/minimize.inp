@@ -4,13 +4,13 @@
 
 prnlev 5
 
-read rtf card name complex_ca.top
-read param card name complex_nscal1.8_fnn1_go_bt.prm
-read psf card name complex_ca.psf
-read coor card name complex_ca.cor
+read rtf card name v1_ca.top
+read param card name v1_nscal1.8_fnn1_go_bt.prm
+read psf card name v1_ca.psf
+read coor card name v1_ca.cor
 
 mini sd nstep 10000
 
-write coor card name complex_ca_mini.cor
+write coor card name v1_ca_mini.cor
 
 STOP

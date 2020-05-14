@@ -1654,7 +1654,7 @@ for($np=0;$np<=$#pdb;$np++)
       # determine the collision diameter
       for($i=$li;$i<=$ri;$i++)
         {
-        print "\n##################################\nRes: $i\n";
+        #print "\n##################################\nRes: $i\n";
         $sigmin[$np][$i]=1000000;
         for($j=$li;$j<=$ri;$j++)
          {

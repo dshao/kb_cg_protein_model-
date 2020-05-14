@@ -1,0 +1,12 @@
+charmm = /gpfs/group/epo2/default/software/charmm/executables/c35b5_deby_doubang_pull/charmm    
+pdb= nbd1_rebuilt.pdb
+nscal=1.1725      
+pot=bt                   
+bondlength_go = 0       
+dihedral_go = 0    
+casm = 0                
+charges = 1              
+angle_dw = 1            
+fnn = 1                
+ca_name = A
+sc_name = none
