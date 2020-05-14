@@ -16,7 +16,7 @@ use:
 
 `perl create_cg_protein_model_v36.2.pl [path-to-control-file]`
 
-see nbd1_monomer_test for an example control file and output
+see monomer_test/nbd1/input/nbd1_n1.1725_go.cntrl for an example control file and output
 
 | cntrl file param | description                                                                                                    |
 |------------------|----------------------------------------------------------------------------------------------------------------|
