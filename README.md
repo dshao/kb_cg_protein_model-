@@ -7,8 +7,7 @@ Monomer coarse-graining with the kb potential
 ---------------------------------------------
 To create a kb_cg_model for a monomer use: 
 
-create_cg_protein_model_v36.2.pl [path-to-control-file]
-
+'create_cg_protein_model_v36.2.pl [path-to-control-file]'
 
 see nbd1_monomer_test for an example control file and output
 
