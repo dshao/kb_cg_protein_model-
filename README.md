@@ -5,7 +5,14 @@ citation for kb_cg model: (1) O’Brien, E. P.; Ziv, G.; Haran, G.; Brooks, B. R
 
 Monomer coarse-graining with the kb potential
 ---------------------------------------------
-To create a kb_cg_model for a monomer use: 
+#### Preprocessing
+1. The pdb use HSE instead of HIS for histidine residues
+2. The pdb cannot be missing residues. If it is use:
+
+`[path-to-charmm-exe] < rebuild_solv_ions_definitive_v1.2.inp pdbin=[path-to-pbd-file-to-rebuild] label=[label-for-output-files]`
+
+#### To create a kb_cg_model for a monomer 
+use: 
 
 `perl create_cg_protein_model_v36.2.pl [path-to-control-file]`
 
