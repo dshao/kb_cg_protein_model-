@@ -65,7 +65,8 @@ see monomer_test/nbd1/input/nbd1_n1.1725_go.cntrl for an example control file an
 
 #### Example cntrl file contents for a monomer:
 
-`charmm = [path-to-charmm-exe]
+``````
+charmm = [path-to-charmm-exe]
 pdb = [path-to-prepared-pdb]
 nscal = 1.8
 pot = bt
@@ -76,7 +77,8 @@ charges = 1
 angle_dw = 1
 fnn = 1
 ca_name = A 
-sc_name = none`
+sc_name = none
+``````
 
 NOTE: this CG procedure requires the hacked version of charmm specific to our group.
 
@@ -158,7 +160,8 @@ see multimer_test/go_model.cntrl for an example control file and output
 
 #### Example cntrl file contents for a multimer:
 
-`charmm = [path-to-charmm-exe]
+``````
+charmm = [path-to-charmm-exe]
 pdb = [path-to-prepared-pdb1] [path-to-prepared-pdb2] ... [path-to-prepared-pdbn]
 nscal = 1.8
 pot = bt bt bt bt bt bt bt
@@ -169,7 +172,8 @@ charges = 1 1 1 1 1 1 1
 angle_dw = 1 1 1 1 1 1 1
 fnn = 1
 ca_name = A B C D E F G
-sc_name = none none none none none none none`
+sc_name = none none none none none none none
+``````
 
 NOTE: this CG procedure requires the hacked version of charmm specific to our group.
 
