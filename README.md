@@ -104,25 +104,25 @@ Multimer coarse-graining with the kb potential is still under construction
 
 4. The pdb must also have the following form:
 
-`ATOM      1  N   MET A   1       1.325   0.000   0.000  1.00  0.00
-ATOM      2  HT1 MET A   1       1.746   0.686   0.658  1.00  0.00
-ATOM      3  HT2 MET A   1       1.356  -0.949   0.423  1.00  0.00
-ATOM      4  HT3 MET A   1       0.337   0.263  -0.189  1.00  0.00
-ATOM      5  CA  MET A   1       2.073   0.000  -1.245  1.00  0.00
-ATOM      6  HA  MET A   1       1.985   1.012  -1.640  1.00  0.00
-ATOM      7  CB  MET A   1       3.533  -0.363  -0.964  1.00  0.00
-ATOM      8  HB1 MET A   1       3.676  -0.302   0.140  1.00  0.00
-ATOM      9  HB2 MET A   1       3.719  -0.331   0.109  1.00  0.00
-ATOM     10  CG  MET A   1       4.484   0.597  -1.681  1.00  0.00
-ATOM     11  HG1 MET A   1       4.877   0.130  -2.608  1.00  0.00
-ATOM     12  HG2 MET A   1       4.857   0.137  -2.596  1.00  0.00
-ATOM     13  SD  MET A   1       5.850   1.016  -0.611  1.00  0.00
-ATOM     14  CE  MET A   1       5.083   2.280   0.389  1.00  0.00
-ATOM     15  HE1 MET A   1       5.586   2.335   1.354  1.00  0.00
-ATOM     16  HE2 MET A   1       5.163   3.242  -0.118  1.00  0.00
-ATOM     17  HE3 MET A   1       4.032   2.036   0.541  1.00  0.00
-ATOM     18  C   MET A   1       1.481  -1.000  -2.241  1.00  0.00
-ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00`
+`ATOM      1  N   MET A   1       1.325   0.000   0.000  1.00  0.00\n
+ATOM      2  HT1 MET A   1       1.746   0.686   0.658  1.00  0.00\n
+ATOM      3  HT2 MET A   1       1.356  -0.949   0.423  1.00  0.00\n
+ATOM      4  HT3 MET A   1       0.337   0.263  -0.189  1.00  0.00\n
+ATOM      5  CA  MET A   1       2.073   0.000  -1.245  1.00  0.00\n
+ATOM      6  HA  MET A   1       1.985   1.012  -1.640  1.00  0.00\n
+ATOM      7  CB  MET A   1       3.533  -0.363  -0.964  1.00  0.00\n
+ATOM      8  HB1 MET A   1       3.676  -0.302   0.140  1.00  0.00\n
+ATOM      9  HB2 MET A   1       3.719  -0.331   0.109  1.00  0.00\n
+ATOM     10  CG  MET A   1       4.484   0.597  -1.681  1.00  0.00\n
+ATOM     11  HG1 MET A   1       4.877   0.130  -2.608  1.00  0.00\n
+ATOM     12  HG2 MET A   1       4.857   0.137  -2.596  1.00  0.00\n
+ATOM     13  SD  MET A   1       5.850   1.016  -0.611  1.00  0.00\n
+ATOM     14  CE  MET A   1       5.083   2.280   0.389  1.00  0.00\n
+ATOM     15  HE1 MET A   1       5.586   2.335   1.354  1.00  0.00\n
+ATOM     16  HE2 MET A   1       5.163   3.242  -0.118  1.00  0.00\n
+ATOM     17  HE3 MET A   1       4.032   2.036   0.541  1.00  0.00\n
+ATOM     18  C   MET A   1       1.481  -1.000  -2.241  1.00  0.00\n
+ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00\n`
 
 If it does not you can use the following for conversion:
 
