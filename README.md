@@ -12,6 +12,7 @@ Monomer coarse-graining with the kb potential
 `[path-to-charmm-exe] < rebuild_solv_ions_definitive_v1.2.inp pdbin=[path-to-pbd-file-to-rebuild] label=[label-for-output-files]`
 
 3. The pdb must also have the following form:
+
 ``````
 ATOM      1  N   MET A   1       1.325   0.000   0.000  1.00  0.00
 ATOM      2  HT1 MET A   1       1.746   0.686   0.658  1.00  0.00
@@ -32,7 +33,8 @@ ATOM     16  HE2 MET A   1       5.163   3.242  -0.118  1.00  0.00
 ATOM     17  HE3 MET A   1       4.032   2.036   0.541  1.00  0.00
 ATOM     18  C   MET A   1       1.481  -1.000  -2.241  1.00  0.00
 ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00
-`````
+``````
+
 If it does not you can use the following for conversion:
 
 `convert_pdb_for_multimer_cg_v1.1.py [path-to-input-pdb] [path-to-output-pdb] [segid]`
@@ -103,6 +105,7 @@ Multimer coarse-graining with the kb potential is still under construction
 `[path-to-charmm-exe] < rebuild_solv_ions_definitive_v1.2.inp pdbin=[path-to-pbd-file-to-rebuild] label=[label-for-output-files]`
 
 4. The pdb must also have the following form:
+
 ``````
 ATOM      1  N   MET A   1       1.325   0.000   0.000  1.00  0.00
 ATOM      2  HT1 MET A   1       1.746   0.686   0.658  1.00  0.00
@@ -124,6 +127,7 @@ ATOM     17  HE3 MET A   1       4.032   2.036   0.541  1.00  0.00
 ATOM     18  C   MET A   1       1.481  -1.000  -2.241  1.00  0.00
 ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00
 ``````
+
 If it does not you can use the following for conversion:
 
 `convert_pdb_for_multimer_cg_v1.1.py [path-to-input-pdb] [path-to-output-pdb] [segid]`
