@@ -181,7 +181,7 @@ Main outputs for each of the n input pdbs:\
 1. [pdb-file-name]_ca.cor
 2. [pdb-file-name]_ca.psf
 3. [pdb-file-name]_ca.top
-4. [pdb-file-name]_[nscal]_[fnn]_go_[pot].prm
+4. [pdb-file-name]\_[nscal]_[fnn]_go_[pot].prm
 5. [pdb-file-name]_ca.seq
 6. [pdb-file-name]_ca_mini.cor
 
