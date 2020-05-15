@@ -178,12 +178,12 @@ sc_name = none none none none none none none
 NOTE: this CG procedure requires the hacked version of charmm specific to our group.
 
 Main outputs for each of the n input pdbs:
-[pdb-file-name]_ca.cor
-[pdb-file-name]_ca.psf
-[pdb-file-name]_ca.top
-[pdb-file-name]_[nscal]_[fnn]_go_[pot].prm
-[pdb-file-name]_ca.seq
-[pdb-file-name]_ca_mini.cor
+    [pdb-file-name]_ca.cor
+    [pdb-file-name]_ca.psf
+    [pdb-file-name]_ca.top
+    [pdb-file-name]_[nscal]_[fnn]_go_[pot].prm
+    [pdb-file-name]_ca.seq
+    [pdb-file-name]_ca_mini.cor
 
 NOTE: other other files are created during the CG procedure that are not necessary for running Molecular Dynamics
 
