@@ -5,30 +5,30 @@
 prnlev 5
 
 ! file handle for input/output
-set out 1ny8_rebuilt_ca
+set out 1gb1_ca
 ! segment name
-set seg A
-
 ! read parameter and topology files
-open unit 10 read form name 1ny8_rebuilt_ca.top
+open unit 10 read form name 1gb1_ca.top
 read rtf unit 10 card
 close unit 10
 
-open unit 10 read form name 1ny8_rebuilt_nscal1.8_fnn1_go_bt.prm
+open unit 10 read form name 1gb1_nscal1.8_fnn1_go_bt.prm
 read param unit 10 card
 close unit 10
+
 
 READ SEQUENCE CARDS
 * CG model
 *
-97
-G1 G2 G3 G4 G5 G6 G7 G8 G9 G10 G11 G12 G13 G14 G15 G16 G17 G18 G19 G20 G21 G22 G23 G24 G25 
-G26 G27 G28 G29 G30 G31 G32 G33 G34 G35 G36 G37 G38 G39 G40 G41 G42 G43 G44 G45 G46 G47 G48 G49 G50 
-G51 G52 G53 G54 G55 G56 G57 G58 G59 G60 G61 G62 G63 G64 G65 G66 G67 G68 G69 G70 G71 G72 G73 G74 G75 
-G76 G77 G78 G79 G80 G81 G82 G83 G84 G85 G86 G87 G88 G89 G90 G91 G92 G93 G94 G95 G96 G97 
+56
+M1 M2 M3 M4 M5 M6 M7 M8 M9 M10 M11 M12 M13 M14 M15 M16 M17 M18 M19 M20 M21 M22 M23 M24 M25 
+M26 M27 M28 M29 M30 M31 M32 M33 M34 M35 M36 M37 M38 M39 M40 M41 M42 M43 M44 M45 M46 M47 M48 M49 M50 
+M51 M52 M53 M54 M55 M56 
 
 ! This creates the psf parameters
-GENERATE @seg FIRS none LAST none SETUP
+GENERATE A FIRS none LAST none SETUP
+!patch disu A G66 A G100 setup
+
 ! Build up coordinate from IC parameter
 IC PARA
 
@@ -37,4 +37,4 @@ open write unit 10 card name @out.psf
 write psf card unit 10
 close unit 10
 
-STOP
+STOP 

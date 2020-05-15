@@ -304,6 +304,7 @@ print "mass_offset = $mass_offset\n";
 print "sc_name = @scp\n";
 print "ca_name = @cap\n";
 print "interact_scale = $interact_scale\n";
+print "number of pdbs = $#pdb\n";
 
 if($#pdb != $#pot) {die "ERROR: pdb != pot, $#pdb != $#pot\n"}
 @pot_list=();
@@ -749,6 +750,7 @@ $res_num2=0;
 @nb=();
 for($np=0;$np<=$#pdb;$np++)
   {
+  print "np = $np";
   print "Reading in PDB file $pdb[$np]\n";
   $nca[$np]=0;
   $tem=0;
@@ -792,63 +794,78 @@ for($np=0;$np<=$#pdb;$np++)
       print "dat_6: $dat[6] --> x\n";
       print "dat_7: $dat[7] --> y\n";
       print "dat_8: $dat[8] --> z\n";
-#      if($hat == 1) # run this test only once on the first atom's coordinates
-#        {
-#        $xtest = $dat[6];
-#        print "xtest = $xtest\n";
-#        $ixtest=int($xtest);
-#        print "int-xtest = $ixtest\n";
-#        print "xint\n" if isint $xtest;
-#        $ytest = $dat[7];
-#        print "ytest = $ytest\n";
-#        $iytest=int($ytest);
-#        print "int-ytest = $iytest\n";
-#        $ztest = $dat[8];
-#        print "ztest = $ztest\n";
-#        $iztest=int($ztest);
-#        print "int-ztest = $iztest\n";
-#        }
-#      if(int($xtest)!=$xtest and int($ytest)!=$ytest and int($ztest)!=$ztest) # Good, they're all floating points
-#        {
-      print "passes float test";
-      $atomnam[$hat] = $dat[2];
-      @chars=split(//,$dat[2]);
-      $atom[$hat] = $chars[0];
-      $resnam[$hat2] = $dat[3];
-      $segnam[$hat2] = $dat[4];
-      $segid[$hat2] = $segid2num{"$segnam[$hat2]"};
-      $junk[$hat2] = $dat[5];
-      if($junk[$hat2] != $junk[$hat2-1]) {$res_num++;$res_num2++;$segnam2[$res_num2]=$dat[4]}
-      $resnum[$hat2] = $res_num2;
-#     $resnum2[$hat2] = $res_num2;
-      $resnam_num1[$np][$res_num] = $resnam[$hat2];    
-      $resnam_num[$res_num2] = $resnam[$hat2];
-      $map_pdbnum_newnum[$segid[$hat2]][$dat[5]] = $res_num2;
-#     print"$segid[$hat2],$dat[5],$map_pdbnum_newnum[$segid[$hat2]][$dat[5]]\n";
-      $x[$hat2] = $dat[6];
-      $y[$hat2] = $dat[7];
-      $z[$hat2] = $dat[8];
-      print "$atom[$hat], $resnam[$hat2], $segnam[$hat2], $atomnam[$hat], $junk[$hat2], $res_num2, $x[$hat2], $y[$hat2], $z[$hat2]\n";
-#        }
-#      else # Assume xyz's are shifted by one index
-#        {
-#        print "assuming xyz's are shifted";
-#        $atomnam[$hat] = $dat[2];
-#        @chars=split(//,$dat[2]);
-#        $atom[$hat] = $chars[0];
-#        $resnam[$np][$hat] = $dat[3];
-#        $segnam[$hat] = $dat[-1];
-#        $segid[$hat] = $segid2num{"$segnam[$hat]"};
-#        $junk[$hat] = $dat[4];
-#        if($junk[$hat] != $junk[$hat-1]) {$res_num++}
-#        print "$atom[$hat], $resnam[$np][$hat], $segnam[$hat], $atomnam[$hat], $junk[$hat], $res_num\n";
-#        $resnum[$hat] = $res_num;
-#        $resnam_num[$np][$res_num] = $resnam[$np][$hat];
-#        $map_pdbnum_newnum[$segid[$hat]][$dat[4]] = $res_num;
-#        $x[$hat] = $dat[5];
-#        $y[$hat] = $dat[6];
-#        $z[$hat] = $dat[7];
-#        }
+      if($hat == 1) # run this test only once on the first atom's coordinates
+        {
+        $xtest = $dat[6];
+        if(index($xtest,".")!=-1)
+            {
+                print "$xtest is a float\n";
+            }
+        else
+            {
+                print "$xtest is NOT a float";
+            }
+        $ytest = $dat[7];
+        if(index($ytest,".")!=-1)
+            {
+                print "$ytest is a float\n";
+            }
+        else
+            {
+                print "$ytest is NOT a float";
+            }
+        $ztest = $dat[8];
+        if(index($ztest,".")!=-1)
+            {
+                print "$ztest is a float\n";
+            }
+        else
+            {
+                print "$ztest is NOT a float";
+            }
+        }
+      
+      if(index($xtest,".")!=-1 and index($ytest,".")!=-1 and index($ztest,".")!=-1) # Good, they're all floating points
+        {
+        print "passes float test";
+        $atomnam[$hat] = $dat[2];
+        @chars=split(//,$dat[2]);
+        $atom[$hat] = $chars[0];
+        $resnam[$hat2] = $dat[3];
+        $segnam[$hat2] = $dat[4];
+        $segid[$hat2] = $segid2num{"$segnam[$hat2]"};
+        $junk[$hat2] = $dat[5];
+        if($junk[$hat2] != $junk[$hat2-1]) {$res_num++;$res_num2++;$segnam2[$res_num2]=$dat[4]}
+        $resnum[$hat2] = $res_num2;
+#        $resnum2[$hat2] = $res_num2;
+        $resnam_num1[$np][$res_num] = $resnam[$hat2];    
+        $resnam_num[$res_num2] = $resnam[$hat2];
+        $map_pdbnum_newnum[$segid[$hat2]][$dat[5]] = $res_num2;
+#        print"$segid[$hat2],$dat[5],$map_pdbnum_newnum[$segid[$hat2]][$dat[5]]\n";
+        $x[$hat2] = $dat[6];
+        $y[$hat2] = $dat[7];
+        $z[$hat2] = $dat[8];
+        print "$atom[$hat], $resnam[$hat2], $segnam[$hat2], $atomnam[$hat], $junk[$hat2], $res_num2, $x[$hat2], $y[$hat2], $z[$hat2]\n";
+        }
+      else # Assume xyz's are shifted by one index
+        {
+        print "assuming xyz's are shifted";
+        $atomnam[$hat] = $dat[2];
+        @chars=split(//,$dat[2]);
+        $atom[$hat] = $chars[0];
+        $resnam[$np][$hat] = $dat[3];
+        $segnam[$hat] = $dat[-1];
+        $segid[$hat] = $segid2num{"$segnam[$hat]"};
+        $junk[$hat] = $dat[4];
+        if($junk[$hat] != $junk[$hat-1]) {$res_num++}
+        print "$atom[$hat], $resnam[$np][$hat], $segnam[$hat], $atomnam[$hat], $junk[$hat], $res_num\n";
+        $resnum[$hat] = $res_num;
+        $resnam_num[$np][$res_num] = $resnam[$np][$hat];
+        $map_pdbnum_newnum[$segid[$hat]][$dat[4]] = $res_num;
+        $x[$hat] = $dat[5];
+        $y[$hat] = $dat[6];
+        $z[$hat] = $dat[7];
+        }
       # Determine if more than one protein segment is present in PDB
 ###      if($hat2 > 1 and ($segnam[$hat] ne $segnam[$hat-1])) {$multi_seg++;$tem=$nca[$np]}
       # ID backbone, and SC atoms
@@ -1089,9 +1106,12 @@ for($np=0;$np<=$#pdb;$np++)
     }
 
   if(uc($pot[$np]) =~ m/GENERIC/) {$offset=$nca[$np]}
+  print "np at end of PDB read in = $np\n"
   } # End loop over PDBs
+
 #############
 
+print "np start of part I = $np\n";
 #Part I
 if(uc($pot[0]) !~ m/GENERIC/)
   {
@@ -1333,6 +1353,8 @@ if(uc($pot[0]) !~ m/GENERIC/)
     close CM;
    }
 #End part I
+   
+print "np end of part I = $np\n";
 #Part II     
     # (5) Determine hydrogen bonds that are present using STRIDE,
     #   and assign to Calpha-Calpha pairs. Also secondary structural elements
@@ -1447,6 +1469,8 @@ if(uc($pot[0]) !~ m/GENERIC/)
       }
   }
 #End Part II
+print "np End of part II = $np\n";
+$np=$#pdb;
 if($np > 0) {$fileBaseName = "complex"}
 # (6) print out new Ca-Cb crd file
 if(uc($pot[$np]) !~ m/GENERIC/) {&writecrd}

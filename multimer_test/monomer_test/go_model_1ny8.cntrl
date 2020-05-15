@@ -1,5 +1,5 @@
 charmm = $c35b5_dhdwp
-pdb=1ny8_rebuilt.pdb
+pdb=1ny8_rebuilt_conv.pdb
 nscal=1.8
 pot=bt
 bondlength_go = 0
