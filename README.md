@@ -80,7 +80,7 @@ ca_name = A
 sc_name = none
 ``````
 
-NOTE: this CG procedure requires the hacked version of charmm specific to our group.
+NOTE: this CG procedure requires the hacked version of charmm specific to our group. It also requires special perl and fortran scripts that are currently only available to our group. We are working to make these public in the near future. 
 
 Main outputs for input pdb:\
 1. [pdb-file-name]_ca.cor
@@ -175,7 +175,7 @@ ca_name = A B C D E F G
 sc_name = none none none none none none none
 ``````
 
-NOTE: this CG procedure requires the hacked version of charmm specific to our group.
+NOTE: this CG procedure requires the hacked version of charmm specific to our group. It also requires special perl and fortran scripts that are currently only available to our group. We are working to make these public in the near future. 
 
 Main outputs for each of the n input pdbs:\
 1. [pdb-file-name]_ca.cor
