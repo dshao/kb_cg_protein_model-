@@ -12,8 +12,8 @@ Monomer coarse-graining with the kb potential
 `[path-to-charmm-exe] < rebuild_solv_ions_definitive_v1.2.inp pdbin=[path-to-pbd-file-to-rebuild] label=[label-for-output-files]`
 
 3. The pdb must also have the following form:
-
-`ATOM      1  N   MET A   1       1.325   0.000   0.000  1.00  0.00
+``````
+ATOM      1  N   MET A   1       1.325   0.000   0.000  1.00  0.00
 ATOM      2  HT1 MET A   1       1.746   0.686   0.658  1.00  0.00
 ATOM      3  HT2 MET A   1       1.356  -0.949   0.423  1.00  0.00
 ATOM      4  HT3 MET A   1       0.337   0.263  -0.189  1.00  0.00
@@ -31,8 +31,8 @@ ATOM     15  HE1 MET A   1       5.586   2.335   1.354  1.00  0.00
 ATOM     16  HE2 MET A   1       5.163   3.242  -0.118  1.00  0.00
 ATOM     17  HE3 MET A   1       4.032   2.036   0.541  1.00  0.00
 ATOM     18  C   MET A   1       1.481  -1.000  -2.241  1.00  0.00
-ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00`
-
+ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00
+`````
 If it does not you can use the following for conversion:
 
 `convert_pdb_for_multimer_cg_v1.1.py [path-to-input-pdb] [path-to-output-pdb] [segid]`
@@ -184,7 +184,3 @@ NOTE: other other files are created during the CG procedure that are not necessa
 `python ../../../parse_cg_prm.py -p [path-to-parameter-file] -t [path-to-topology-file]`
 
 
-```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
-`````````
