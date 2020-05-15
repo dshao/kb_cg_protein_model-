@@ -104,7 +104,7 @@ Multimer coarse-graining with the kb potential is still under construction
 
 4. The pdb must also have the following form:
 
-`   ATOM      1  N   MET A   1       1.325   0.000   0.000  1.00  0.00
+    ATOM      1  N   MET A   1       1.325   0.000   0.000  1.00  0.00
     ATOM      2  HT1 MET A   1       1.746   0.686   0.658  1.00  0.00
     ATOM      3  HT2 MET A   1       1.356  -0.949   0.423  1.00  0.00
     ATOM      4  HT3 MET A   1       0.337   0.263  -0.189  1.00  0.00
@@ -122,7 +122,7 @@ Multimer coarse-graining with the kb potential is still under construction
     ATOM     16  HE2 MET A   1       5.163   3.242  -0.118  1.00  0.00
     ATOM     17  HE3 MET A   1       4.032   2.036   0.541  1.00  0.00
     ATOM     18  C   MET A   1       1.481  -1.000  -2.241  1.00  0.00
-    ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00`
+    ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00
 
 If it does not you can use the following for conversion:
 
