@@ -183,3 +183,8 @@ NOTE: other other files are created during the CG procedure that are not necessa
 
 `python ../../../parse_cg_prm.py -p [path-to-parameter-file] -t [path-to-topology-file]`
 
+
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+`````````
