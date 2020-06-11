@@ -1,0 +1,12 @@
+charmm = /gpfs/group/epo2/default/software/charmm/charmm_multidom
+pdb=p1.pdb q1.pdb r1.pdb s1.pdb t1.pdb u1.pdb v1.pdb
+nscal=1.8
+pot=bt bt bt bt bt bt bt
+bondlength_go = 0 0 0 0 0 0 0
+dihedral_go = 0 0 0 0 0 0 0
+casm = 0
+charges = 1 1 1 1 1 1 1
+angle_dw = 1 1 1 1 1 1 1
+fnn = 1
+ca_name = A B C D E F G
+sc_name = none none none none none none none
