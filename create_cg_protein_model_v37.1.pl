@@ -163,6 +163,7 @@ $int_scfac = $nscal; # default
 $int_file = "none";
 $interact_scale = "undefined";
 $mass_offset = 0; # Start labeling atom-id's as $mass_offset+1
+$NBXMOD = 4
 #@cap = ("A"); # C-alpha atom prefix in top, prm, psf files
 #@scp = ("B"); # side chain prefix
 ### END: defaults ###
@@ -185,7 +186,9 @@ while(<IN>)
       }
     elsif($dat[0] =~ m/charmm/) {$charmm = $dat[1]}
     elsif($dat[0] =~ m/nscal/) {$nscal = $dat[1]}
+    elsif($dat[0] =~ m/nbxmod/) {$NBXMOD = $dat[1]}
     elsif($dat[0] =~ m/fnn/) {$fnn = $dat[1]}
+    elsif($dat[0] =~ m/heav_cut/) {$heav_cut = $dat[1]}
     elsif($dat[0] =~ m/pot/) 
       {
       for($i=0;$i<=$#dat2;$i++) {push(@pot,$dat2[$i])} # read in a list of potentials, it must match the number of PDBs
@@ -1851,7 +1854,7 @@ if($casm == 1)
 print OUT "\n";
 ## nonbonded section
 # I'm not sure whether to use NBXMOD 3 or 4
-print OUT "NONBONDED NBXMOD 3 ATOM CDIEL SWITCH VATOM VDISTANCE VSWITCH -\n";
+print OUT "NONBONDED $NBXMOD 3 ATOM CDIEL SWITCH VATOM VDISTANCE VSWITCH -\n";
 print OUT "CUTNB 37 CTOFNB 20 CTONNB 18 EPS 78.5 WMIN 1.5 E14FAC 1.0\n";
 print OUT "!atom           e_min   r_min/2\n";
 # if using the C-alpha only model do some preprocessing to determine the collision

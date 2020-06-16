@@ -62,6 +62,8 @@ see monomer_test/nbd1/input/nbd1_n1.1725_go.cntrl for an example control file an
 | fnn              | a multiplicative value which modifies the radius of the hard spheres used in the coarse-grain model            |
 | ca_name          | name of model segments for alpha-carbon only CG model                                                          |
 | sc_name          | name of side-chains for alpha-carbon side-chain CG model                                                       |
+| nbxmod           | non-bonded local cutoff see https://www.charmm.org/charmm/documentation/by-version/c40b1/params/doc/nbonds/    |
+| heav_cut         | cutoff for sidechain heavy atom contacts                                                                       |
 
 #### Example cntrl file contents for a monomer:
 
@@ -78,6 +80,8 @@ angle_dw = 1
 fnn = 1
 ca_name = A 
 sc_name = none
+nbxmod = 4
+heav_cut = 4.5
 ``````
 
 NOTE: this CG procedure requires the hacked version of charmm specific to our group. It also requires special perl and fortran scripts that are currently only available to our group. We are working to make these public in the near future. 
@@ -157,6 +161,8 @@ see multimer_test/go_model.cntrl for an example control file and output
 | fnn              | a multiplicative value which modifies the radius of the hard spheres used in the coarse-grain model            |
 | ca_name          | name of model segments for alpha-carbon only CG model                                                          |
 | sc_name          | name of side-chains for alpha-carbon side-chain CG model                                                       |
+| nbxmod           | non-bonded local cutoff see https://www.charmm.org/charmm/documentation/by-version/c40b1/params/doc/nbonds/    |
+| heav_cut         | cutoff for sidechain heavy atom contacts                                                                       |
 
 #### Example cntrl file contents for a multimer:
 
@@ -173,6 +179,8 @@ angle_dw = 1 1 1 1 1 1 1
 fnn = 1
 ca_name = A B C D E F G
 sc_name = none none none none none none none
+nbxmod = 4
+heav_cut = 4.5
 ``````
 
 NOTE: this CG procedure requires the hacked version of charmm specific to our group. It also requires special perl and fortran scripts that are currently only available to our group. We are working to make these public in the near future. 
