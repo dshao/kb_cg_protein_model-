@@ -5,8 +5,8 @@
 
 
 ! get aa definitions and parameters
-read rtf card name /gpfs/group/epo2/default/software/shared_files/top_all27_prot_na.rtf
-read param card name /gpfs/group/epo2/default/software/shared_files/par_all27_prot_na.prm
+read rtf card name @aatop
+read param card name @aaprm
 
 ! Read sequence from the PDB coordinate file
 open unit 1 card read name @pdbin

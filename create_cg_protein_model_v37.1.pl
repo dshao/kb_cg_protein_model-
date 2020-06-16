@@ -189,6 +189,7 @@ while(<IN>)
     elsif($dat[0] =~ m/nbxmod/) {$NBXMOD = $dat[1]}
     elsif($dat[0] =~ m/fnn/) {$fnn = $dat[1]}
     elsif($dat[0] =~ m/heav_cut/) {$heav_cut = $dat[1]}
+    elsif($dat[0] =~ m/convpdb/) {$convpdb = $dat[1]}
     elsif($dat[0] =~ m/pot/) 
       {
       for($i=0;$i<=$#dat2;$i++) {push(@pot,$dat2[$i])} # read in a list of potentials, it must match the number of PDBs
@@ -766,11 +767,11 @@ for($np=0;$np<=$#pdb;$np++)
   $fileBaseName = lc($fileBaseName);
   $out = "$fileBaseName" . "_heavy_atoms.pdb";
   $compl="complex_heavy_atoms.pdb";
-  system "convpdb.pl -nsel heavy $pdb[$np] > temp.pdb";
+  system "$convpdb -nsel heavy $pdb[$np] > temp.pdb";
   system "cat temp.pdb >>$compl";
   system "tail -n 1 $compl | wc -c | xargs -I {} truncate $compl -s -{}";
 #  system "convpdb.pl -renumber 1 -nohetero -out charmm27 temp.pdb > $out";   
-  system "convpdb.pl -nohetero -out charmm27 temp.pdb > $out";
+  system "$convpdb -nohetero -out charmm27 temp.pdb > $out";
   # (2) extract coordinates on Calpha and
   # sequence information (used for assigning dihedrals)
   open(IN,"$out") or die "ERROR: file $out does not exist\n";

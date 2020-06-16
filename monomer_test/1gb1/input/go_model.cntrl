@@ -10,3 +10,6 @@ angle_dw = 1
 fnn = 1
 ca_name = A 
 sc_name = none
+nbxmod = 4
+heav_cut = 4.5
+convpdb = /gpfs/group/epo2/default/ims86/software/mmtsb2.0/perl/convpdb.pl

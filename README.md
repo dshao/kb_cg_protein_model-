@@ -9,7 +9,7 @@ Monomer coarse-graining with the kb potential
 1. The pdb use HSE instead of HIS for histidine residues
 2. The pdb cannot be missing residues. If it is use:
 
-`[path-to-charmm-exe] < rebuild_solv_ions_definitive_v1.2.inp pdbin=[path-to-pbd-file-to-rebuild] label=[label-for-output-files]`
+`[path-to-charmm-exe] < rebuild_solv_ions_definitive_v1.2.inp pdbin=[path-to-pbd-file-to-rebuild] label=[label-for-output-files] aatop=[path-to-top_all27_prot_na.rtf] aaprm=[path-to-par_all27_prot_na.prm]`
 
 3. The pdb must also have the following form:
 
@@ -37,7 +37,7 @@ ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00
 
 If it does not you can use the following for conversion:
 
-`convert_pdb_for_multimer_cg_v1.1.py [path-to-input-pdb] [path-to-output-pdb] [segid]`
+`python convert_pdb_for_multimer_cg_v1.1.py [path-to-input-pdb] [path-to-output-pdb] [segid]`
 
 NOTE: this conversion script is not perfect as there are many different forms a PDB can take depending on when and by what it was created. The script is simple enough that any beginner pythoner can modify it.
 
@@ -64,6 +64,7 @@ see monomer_test/nbd1/input/nbd1_n1.1725_go.cntrl for an example control file an
 | sc_name          | name of side-chains for alpha-carbon side-chain CG model                                                       |
 | nbxmod           | non-bonded local cutoff see https://www.charmm.org/charmm/documentation/by-version/c40b1/params/doc/nbonds/    |
 | heav_cut         | cutoff for sidechain heavy atom contacts                                                                       |
+| convpdb          | path to convpdb.pl script                                                                                      |
 
 #### Example cntrl file contents for a monomer:
 
@@ -82,6 +83,7 @@ ca_name = A
 sc_name = none
 nbxmod = 4
 heav_cut = 4.5
+convpdb = /gpfs/group/epo2/default/ims86/software/mmtsb2.0/perl/convpdb.pl
 ``````
 
 NOTE: this CG procedure requires the hacked version of charmm specific to our group. It also requires special perl and fortran scripts that are currently only available to our group. We are working to make these public in the near future. 
@@ -108,7 +110,7 @@ Multimer coarse-graining with the kb potential is still under construction
 2. The pdb use HSE instead of HIS for histidine residues
 3. The pdb cannot be missing residues. If it is use:
 
-`[path-to-charmm-exe] < rebuild_solv_ions_definitive_v1.2.inp pdbin=[path-to-pbd-file-to-rebuild] label=[label-for-output-files]`
+`[path-to-charmm-exe] < rebuild_solv_ions_definitive_v1.2.inp pdbin=[path-to-pbd-file-to-rebuild] label=[label-for-output-files] aatop=[path-to-top_all27_prot_na.rtf] aaprm=[path-to-par_all27_prot_na.prm]`
 
 4. The pdb must also have the following form:
 
@@ -136,7 +138,7 @@ ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00
 
 If it does not you can use the following for conversion:
 
-`convert_pdb_for_multimer_cg_v1.1.py [path-to-input-pdb] [path-to-output-pdb] [segid]`
+`python convert_pdb_for_multimer_cg_v1.1.py [path-to-input-pdb] [path-to-output-pdb] [segid]`
 
 NOTE: this conversion script is not perfect as there are many different forms a PDB can take depending on when and by what it was created. The script is simple enough that any beginner pythoner can modify it.
 
@@ -163,6 +165,7 @@ see multimer_test/go_model.cntrl for an example control file and output
 | sc_name          | name of side-chains for alpha-carbon side-chain CG model                                                       |
 | nbxmod           | non-bonded local cutoff see https://www.charmm.org/charmm/documentation/by-version/c40b1/params/doc/nbonds/    |
 | heav_cut         | cutoff for sidechain heavy atom contacts                                                                       |
+| convpdb          | path to convpdb.pl script                                                                                      |
 
 #### Example cntrl file contents for a multimer:
 
@@ -181,6 +184,7 @@ ca_name = A B C D E F G
 sc_name = none none none none none none none
 nbxmod = 4
 heav_cut = 4.5
+convpdb = /gpfs/group/epo2/default/ims86/software/mmtsb2.0/perl/convpdb.pl
 ``````
 
 NOTE: this CG procedure requires the hacked version of charmm specific to our group. It also requires special perl and fortran scripts that are currently only available to our group. We are working to make these public in the near future. 
