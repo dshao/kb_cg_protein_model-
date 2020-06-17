@@ -64,7 +64,6 @@ see monomer_test/nbd1/input/nbd1_n1.1725_go.cntrl for an example control file an
 | sc_name          | name of side-chains for alpha-carbon side-chain CG model                                                       |
 | nbxmod           | non-bonded local cutoff see https://www.charmm.org/charmm/documentation/by-version/c40b1/params/doc/nbonds/    |
 | heav_cut         | cutoff for sidechain heavy atom contacts                                                                       |
-| convpdb          | path to convpdb.pl script                                                                                      |
 
 #### Example cntrl file contents for a monomer:
 
@@ -83,7 +82,6 @@ ca_name = A
 sc_name = none
 nbxmod = 4
 heav_cut = 4.5
-convpdb = /gpfs/group/epo2/default/ims86/software/mmtsb2.0/perl/convpdb.pl
 ``````
 
 NOTE: this CG procedure requires the hacked version of charmm specific to our group. It also requires special perl and fortran scripts that are currently only available to our group. We are working to make these public in the near future. 
@@ -165,7 +163,6 @@ see multimer_test/go_model.cntrl for an example control file and output
 | sc_name          | name of side-chains for alpha-carbon side-chain CG model                                                       |
 | nbxmod           | non-bonded local cutoff see https://www.charmm.org/charmm/documentation/by-version/c40b1/params/doc/nbonds/    |
 | heav_cut         | cutoff for sidechain heavy atom contacts                                                                       |
-| convpdb          | path to convpdb.pl script                                                                                      |
 
 #### Example cntrl file contents for a multimer:
 
@@ -184,7 +181,6 @@ ca_name = A B C D E F G
 sc_name = none none none none none none none
 nbxmod = 4
 heav_cut = 4.5
-convpdb = /gpfs/group/epo2/default/ims86/software/mmtsb2.0/perl/convpdb.pl
 ``````
 
 NOTE: this CG procedure requires the hacked version of charmm specific to our group. It also requires special perl and fortran scripts that are currently only available to our group. We are working to make these public in the near future. 
