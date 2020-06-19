@@ -592,15 +592,13 @@ foreach $letter (@alphabet)
 # Miyazawa-Jernigan statistical potential values
 # OR Bentancourt-Thirumalai potential
 # get contact potential minimum energies
-$dir = getcwd;
-@dat = split(/\//,$dir);
-$root = join('/',@dat[0..4]);
-if(uc($final_pot) =~ m/MJ/) {$miya = "$root/software/shared_files/mj_contact_potential.dat"}
-elsif(uc($final_pot) =~ m/KGS/) {$miya = "$root/software/shared_files/kgs_contact_potential.dat"}
-elsif(uc($final_pot) =~ m/BT/) {$miya = "$root/software/shared_files/bt_contact_potential.dat"}
+$shared_files = $ARGV[1];
+if(uc($final_pot) =~ m/MJ/) {$miya = "$shared_files/mj_contact_potential.dat"}
+elsif(uc($final_pot) =~ m/KGS/) {$miya = "$shared_files/kgs_contact_potential.dat"}
+elsif(uc($final_pot) =~ m/BT/) {$miya = "$shared_files/bt_contact_potential.dat"}
 #elsif(uc($final_pot) =~ m/BT/) {$miya = "/storage/work/lxp260/software/shared_files/bt_contact_potential.dat"}
-elsif(uc($final_pot) =~ m/CT/) {$miya = "$root/software/shared_files/mj_contact_potential.dat"} # Dirty, temporary solution
-elsif(uc($final_pot) =~ m/GENERIC/) {$miya = "$root/software/shared_files/mj_contact_potential.dat"} # Dirty, temporary solution
+elsif(uc($final_pot) =~ m/CT/) {$miya = "$shared_files/mj_contact_potential.dat"} # Dirty, temporary solution
+elsif(uc($final_pot) =~ m/GENERIC/) {$miya = "$shared_files/mj_contact_potential.dat"} # Dirty, temporary solution
 else {die "ERROR: Unrecognized force-field $final_pot\n";}
 open(IN,"$miya") or die "ERROR: file $miya does not exist\n";
 $nrows = 0;
@@ -668,7 +666,7 @@ print "The average $final_pot interaction energy is $avg_mj\n";
 print "Reading in dihedrals for each PDB \n";
 if($dihedral_go[$np] == 0) 
  {
- $file = "$root/software/shared_files/karanicolas_dihe_parm.dat";
+ $file = "$shared_files/karanicolas_dihe_parm.dat";
  open(IN,"$file") or die "ERROR: file $file does not exist\n";
  while(<IN>)
    {

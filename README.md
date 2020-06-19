@@ -44,7 +44,7 @@ NOTE: this conversion script is not perfect as there are many different forms a 
 #### To create a kb_cg_model for a monomer 
 use: 
 
-`perl create_cg_protein_model_v37.1.pl [path-to-control-file]`
+`perl create_cg_protein_model_v37.1.pl [path-to-control-file] [path-to-shared-files-folder]`
 
 see monomer_test/nbd1/input/nbd1_n1.1725_go.cntrl for an example control file and output
 
@@ -143,7 +143,7 @@ NOTE: this conversion script is not perfect as there are many different forms a 
 #### To create a kb_cg_model for a monomer 
 use: 
 
-`perl create_cg_protein_model_v37.1.pl [path-to-control-file]`
+`perl create_cg_protein_model_v37.1.pl [path-to-control-file] [path-to-shared-files-folder]`
 
 see multimer_test/go_model.cntrl for an example control file and output
 
