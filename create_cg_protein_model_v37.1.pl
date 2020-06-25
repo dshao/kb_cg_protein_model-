@@ -163,7 +163,7 @@ $int_scfac = $nscal; # default
 $int_file = "none";
 $interact_scale = "undefined";
 $mass_offset = 0; # Start labeling atom-id's as $mass_offset+1
-$NBXMOD = 4
+$NBXMOD = 4;
 #@cap = ("A"); # C-alpha atom prefix in top, prm, psf files
 #@scp = ("B"); # side chain prefix
 ### END: defaults ###
@@ -189,7 +189,6 @@ while(<IN>)
     elsif($dat[0] =~ m/nbxmod/) {$NBXMOD = $dat[1]}
     elsif($dat[0] =~ m/fnn/) {$fnn = $dat[1]}
     elsif($dat[0] =~ m/heav_cut/) {$heav_cut = $dat[1]}
-    elsif($dat[0] =~ m/convpdb/) {$convpdb = $dat[1]}
     elsif($dat[0] =~ m/pot/) 
       {
       for($i=0;$i<=$#dat2;$i++) {push(@pot,$dat2[$i])} # read in a list of potentials, it must match the number of PDBs
@@ -593,15 +592,13 @@ foreach $letter (@alphabet)
 # Miyazawa-Jernigan statistical potential values
 # OR Bentancourt-Thirumalai potential
 # get contact potential minimum energies
-$dir = getcwd;
-@dat = split(/\//,$dir);
-$root = join('/',@dat[0..4]);
-if(uc($final_pot) =~ m/MJ/) {$miya = "$root/software/shared_files/mj_contact_potential.dat"}
-elsif(uc($final_pot) =~ m/KGS/) {$miya = "$root/software/shared_files/kgs_contact_potential.dat"}
-elsif(uc($final_pot) =~ m/BT/) {$miya = "$root/software/shared_files/bt_contact_potential.dat"}
+$shared_files = $ARGV[1];
+if(uc($final_pot) =~ m/MJ/) {$miya = "$shared_files/mj_contact_potential.dat"}
+elsif(uc($final_pot) =~ m/KGS/) {$miya = "$shared_files/kgs_contact_potential.dat"}
+elsif(uc($final_pot) =~ m/BT/) {$miya = "$shared_files/bt_contact_potential.dat"}
 #elsif(uc($final_pot) =~ m/BT/) {$miya = "/storage/work/lxp260/software/shared_files/bt_contact_potential.dat"}
-elsif(uc($final_pot) =~ m/CT/) {$miya = "$root/software/shared_files/mj_contact_potential.dat"} # Dirty, temporary solution
-elsif(uc($final_pot) =~ m/GENERIC/) {$miya = "$root/software/shared_files/mj_contact_potential.dat"} # Dirty, temporary solution
+elsif(uc($final_pot) =~ m/CT/) {$miya = "$shared_files/mj_contact_potential.dat"} # Dirty, temporary solution
+elsif(uc($final_pot) =~ m/GENERIC/) {$miya = "$shared_files/mj_contact_potential.dat"} # Dirty, temporary solution
 else {die "ERROR: Unrecognized force-field $final_pot\n";}
 open(IN,"$miya") or die "ERROR: file $miya does not exist\n";
 $nrows = 0;
@@ -669,7 +666,7 @@ print "The average $final_pot interaction energy is $avg_mj\n";
 print "Reading in dihedrals for each PDB \n";
 if($dihedral_go[$np] == 0) 
  {
- $file = "/gpfs/group/epo2/default/shared/software/shared_files/karanicolas_dihe_parm.dat";
+ $file = "$shared_files/karanicolas_dihe_parm.dat";
  open(IN,"$file") or die "ERROR: file $file does not exist\n";
  while(<IN>)
    {
@@ -767,11 +764,11 @@ for($np=0;$np<=$#pdb;$np++)
   $fileBaseName = lc($fileBaseName);
   $out = "$fileBaseName" . "_heavy_atoms.pdb";
   $compl="complex_heavy_atoms.pdb";
-  system "$convpdb -nsel heavy $pdb[$np] > temp.pdb";
+  system "convpdb.pl -nsel heavy $pdb[$np] > temp.pdb";
   system "cat temp.pdb >>$compl";
   system "tail -n 1 $compl | wc -c | xargs -I {} truncate $compl -s -{}";
 #  system "convpdb.pl -renumber 1 -nohetero -out charmm27 temp.pdb > $out";   
-  system "$convpdb -nohetero -out charmm27 temp.pdb > $out";
+  system "convpdb.pl -nohetero -out charmm27 temp.pdb > $out";
   # (2) extract coordinates on Calpha and
   # sequence information (used for assigning dihedrals)
   open(IN,"$out") or die "ERROR: file $out does not exist\n";
