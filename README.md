@@ -37,9 +37,23 @@ ATOM     19  O   MET A   1       2.212  -1.766  -2.866  1.00  0.00
 
 If it does not you can use the following for conversion:
 
-`python convert_pdb_for_multimer_cg_v1.1.py [path-to-input-pdb] [path-to-output-pdb] [segid]`
+`python convert_pdb_for_multimer_cg_v1.1.py [path-to-input-pdb] [path-to-output-pdb] [rebuild Yes:1 No:0] [path-to-seq_file]`
 
 NOTE: this conversion script is not perfect as there are many different forms a PDB can take depending on when and by what it was created. The script is simple enough that any beginner pythoner can modify it.
+
+-The input PDB should contain a single chain. If you are doing multimer CGing you will need to use this conversion script on all chains in separate PDB files before CGing.
+-The [path-output-pdb] is a path to the output pdb minus the .pdb filetag as that will automatically be added
+-If you are rebuilding parts of a sequence or adding a mutation you must provide a file [path-to-seq_file] that has two columns
+``````
+MET 1
+VAL 2
+ALA 3
+ .  .
+ .  .
+ .  .
+``````
+where the first column is the sequence of 3 letter amino acid codes and the second column is the resid in the PDB. If you resid does not start at 1 as you are CGing a subsection of a protein it will be 
+rescaled to start from 1 as the rebuilding process in CHARMM requires this. 
 
 #### To create a kb_cg_model for a monomer 
 use: 
@@ -139,6 +153,20 @@ If it does not you can use the following for conversion:
 `python convert_pdb_for_multimer_cg_v1.1.py [path-to-input-pdb] [path-to-output-pdb] [segid]`
 
 NOTE: this conversion script is not perfect as there are many different forms a PDB can take depending on when and by what it was created. The script is simple enough that any beginner pythoner can modify it.
+
+-The input PDB should contain a single chain. If you are doing multimer CGing you will need to use this conversion script on all chains in separate PDB files before CGing.
+-The [path-output-pdb] is a path to the output pdb minus the .pdb filetag as that will automatically be added
+-If you are rebuilding parts of a sequence or adding a mutation you must provide a file [path-to-seq_file] that has two columns
+``````
+MET 1
+VAL 2
+ALA 3
+ .  .
+ .  .
+ .  .
+``````
+where the first column is the sequence of 3 letter amino acid codes and the second column is the resid in the PDB. If you resid does not start at 1 as you are CGing a subsection of a protein it will be 
+rescaled to start from 1 as the rebuilding process in CHARMM requires this. 
 
 #### To create a kb_cg_model for a monomer 
 use: 
