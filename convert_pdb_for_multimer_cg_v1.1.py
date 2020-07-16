@@ -27,17 +27,77 @@ import sys
 #ATOM   1356  CA  GLU A 191     130.032  31.085 -32.211  1.00 84.39           C       A
 #ATOM   1357  C   GLU A 191     128.850  30.643 -31.371  1.00 83.07           C       A
 
-if len(sys.argv)!=3:
-    print('Usage: [path-to-pdb] [path-to-outpdb]')
+#also determines if residues need to be rebuilt and rebuilds them if necessary
+#requires a file be passed that contains two columns for the complete mRNA sequence to be rebuilt [three letter resiude code][resid in pdb context]
+#
+if len(sys.argv)<4:
+    print('Usage: [path-to-pdb] [path-to-outpdb] [rebuilt No:0 Yes:1] (if rebuilt is Yes you must specify additionally)[path-to-seqfile]')
     quit()
 
-data=open(sys.argv[1],'r').readlines()
-data=[x.strip('\n').split() for x in data if x.startswith('ATOM')]
+#convert all HIS to HSE just in case
+os.system(f'sed -i "s/HIS/HSE/g" {sys.argv[1]}')
 
-with open(sys.argv[2],'w') as of:
-    for d in data:
-        #print(d)
-        outstr='ATOM'+d[1].rjust(7)+'  '+d[2].ljust(4)+d[3]+' '+d[10]+d[4].rjust(4)+d[5].rjust(12)+d[6].rjust(8)+d[7].rjust(8)+d[8].rjust(6)+d[9].rjust(6)+'\n'
-        print(outstr)
-        of.write(outstr)
+data=open(sys.argv[1],'r').readlines()
+rebuild=int(sys.argv[3])
+
+if rebuild==1:
+    try:
+        seq_file_path=sys.argv[4]
+    except:
+        print('you must specify a sequence file if you are rebuilding residues, exitting...')
+        quit()
+
+    #find residues that are missing or mutated in the supplied sequence file
+    seq=open(seq_file_path,'r').readlines()
+    data=[x.strip('\n').split() for x in data if x.startswith('ATOM')]
+    for s in seq:
+        resname=s.split()[0]
+        resid=s.split()[1]
+        temp_data=[x for x in data if int(x[5]) == int(resid)]
+        if len(temp_data)==0:
+            print(f'Residue: {resname} @ {resid} is missing and will be rebuilt')
+            continue
+        if temp_data[0][3]!=resname:
+            print(f'Resid {resid} in PDB {temp_data[0][3]} does not match that in seq file provided {resname} and will be treated as a desired mutation')
+            print(f'Resid {resid} will be rebuilt as a {resname}')
+            data=[x for x in data if int(x[5])!=int(resid)]
+
+    #remove trailing C-term residues no in the supplied sequence file
+    last_resid=seq[-1].split()[1]
+    data=[x for x in data if int(x[5])<=int(last_resid)]
+
+    #renumber all resid in data to start at 1 relative to the supplied sequence file
+    offset=int(seq[0].split()[1])-1
+    print(f'Offset: {offset}')
+
+    for i in range(len(data)):
+        data[i][5]=str(int(data[i][5])-offset)
+
+    #output seq file for charmm rebuild
+    with open('temp_seq_file.txt','w') as of:
+        of.write(f'*rebuild for {sys.argv[1]}\n{len(seq)}\n')
+        for s in seq:
+            of.write(f'{s.split()[0]}\n')
+
+    #output temp_pdb_file
+    with open('temp_pdb_file.pdb','w') as of:
+        for d in data:
+            outstr='ATOM'+d[1].rjust(7)+'  '+d[2].ljust(4)+d[3]+' '+d[4]+d[5].rjust(4)+d[6].rjust(12)+d[7].rjust(8)+d[8].rjust(8)+d[9].rjust(6)+d[10].rjust(6)+'\n'
+            of.write(outstr)
+
+    #rebuild the residues
+    rebuld_cmd = f'$c35b5_dhdwp < ../../../rebuild_solv_ions_definitive_v1.2.inp pdbin=temp_pdb_file.pdb aatop=/gpfs/group/epo2/default/software/shared_files/top_all27_prot_na.rtf aaprm=/gpfs/group/epo2/default/software/shared_files/par_all27_prot_na.prm seq=temp_seq_file.txt label={sys.argv[2]}'
+    os.system(rebuld_cmd)
+
+#remove temp_pdb_file.pdb and temp_seq_file.txt
+os.system('rm temp_seq_file.txt temp_pdb_file.pdb')
+
+data=[x.strip('\n').split() for x in open(f'{sys.argv[2]}_rebuilt.pdb','r').readlines()]
+with open(f'{sys.argv[2]}_rebuilt_formated.pdb','w') as of:
+    for d in data :
+        if d[0]=='ATOM':
+            print(d)
+            outstr='ATOM'+d[1].rjust(7)+'  '+d[2].ljust(4)+d[3]+' '+d[10]+d[4].rjust(4)+d[5].rjust(12)+d[6].rjust(8)+d[7].rjust(8)+d[8].rjust(6)+d[9].rjust(6)+'\n'
+            print(outstr)
+            of.write(outstr)
 
