@@ -62,7 +62,7 @@ if rebuild==1:
             print(f'Resid {resid} will be rebuilt as a {resname}')
             data=[x for x in data if int(x[5])!=int(resid)]
 
-    #remove trailing C-term residues no in the supplied sequence file
+    #remove trailing C-term residues not in the supplied sequence file
     last_resid=seq[-1].split()[1]
     data=[x for x in data if int(x[5])<=int(last_resid)]
 
@@ -86,18 +86,28 @@ if rebuild==1:
             of.write(outstr)
 
     #rebuild the residues
-    rebuld_cmd = f'$c35b5_dhdwp < ../../../rebuild_solv_ions_definitive_v1.2.inp pdbin=temp_pdb_file.pdb aatop=/gpfs/group/epo2/default/software/shared_files/top_all27_prot_na.rtf aaprm=/gpfs/group/epo2/default/software/shared_files/par_all27_prot_na.prm seq=temp_seq_file.txt label={sys.argv[2]}'
+    rebuld_cmd = f'$c35b5_dhdwp < /gpfs/group/epo2/default/git_pub_repos/kb_cg_protein_model-/rebuild_solv_ions_definitive_v1.2.inp pdbin=temp_pdb_file.pdb aatop=/gpfs/group/epo2/default/software/shared_files/top_all27_prot_na.rtf aaprm=/gpfs/group/epo2/default/software/shared_files/par_all27_prot_na.prm seq=temp_seq_file.txt label={sys.argv[2]}'
     os.system(rebuld_cmd)
 
-#remove temp_pdb_file.pdb and temp_seq_file.txt
-os.system('rm temp_seq_file.txt temp_pdb_file.pdb')
+    #remove temp_pdb_file.pdb and temp_seq_file.txt
+    os.system('rm temp_seq_file.txt temp_pdb_file.pdb')
 
-data=[x.strip('\n').split() for x in open(f'{sys.argv[2]}_rebuilt.pdb','r').readlines()]
-with open(f'{sys.argv[2]}_rebuilt_formated.pdb','w') as of:
-    for d in data :
-        if d[0]=='ATOM':
-            print(d)
-            outstr='ATOM'+d[1].rjust(7)+'  '+d[2].ljust(4)+d[3]+' '+d[10]+d[4].rjust(4)+d[5].rjust(12)+d[6].rjust(8)+d[7].rjust(8)+d[8].rjust(6)+d[9].rjust(6)+'\n'
-            print(outstr)
-            of.write(outstr)
+    data=[x.strip('\n').split() for x in open(f'{sys.argv[2]}_rebuilt.pdb','r').readlines()]
+    with open(f'{sys.argv[2]}_rebuilt_formated.pdb','w') as of:
+        for d in data :
+            if d[0]=='ATOM':
+                print(d)
+                outstr='ATOM'+d[1].rjust(7)+'  '+d[2].ljust(4)+d[3]+' '+d[10]+d[4].rjust(4)+d[5].rjust(12)+d[6].rjust(8)+d[7].rjust(8)+d[8].rjust(6)+d[9].rjust(6)+'\n'
+                print(outstr)
+                of.write(outstr)
+
+if rebuild==0:
+    with open(f'{sys.argv[2]}_formated.pdb','w') as of:
+        for d in data :
+            d=d.strip('\n').split()
+            if d[0]=='ATOM':
+                print(d)
+                outstr='ATOM'+d[1].rjust(7)+'  '+d[2].ljust(4)+d[3]+' '+d[4]+d[5].rjust(4)+d[6].rjust(12)+d[7].rjust(8)+d[8].rjust(8)+d[9].rjust(6)+d[10].rjust(6)+'\n'
+                print(outstr)
+                of.write(outstr)
 
